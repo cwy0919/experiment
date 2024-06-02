@@ -1,12 +1,12 @@
 #include<stdio.h>
 #include<time.h>
 #include<stdlib.h>
-//²åÈëÅÅĞò
+//æ’å…¥æ’åº
 void InsertSort(int* a, int n)
 {
 	for (int i = 0; i < n-1; i++)
 	{
-		//end¿É¿´×÷´Ó×óÖÁÓÒÓĞĞòµÄ×îºóÒ»¸öÊıµÄÏÂ±ê
+		//endå¯çœ‹ä½œä»å·¦è‡³å³æœ‰åºçš„æœ€åä¸€ä¸ªæ•°çš„ä¸‹æ ‡
 		int end = i;
 		int tmp = a[end + 1];
 		
@@ -22,12 +22,12 @@ void InsertSort(int* a, int n)
 			}
 			end--;
 		}
-		//´ËÊ±tmpµÄÖµ´óÓÚ»òµÈÓÚÏÂ±êÎªendµÄÖµ£¬ËùÒÔ²åÈëÔÚËüµÄºóÃæ
+		//æ­¤æ—¶tmpçš„å€¼å¤§äºæˆ–ç­‰äºä¸‹æ ‡ä¸ºendçš„å€¼ï¼Œæ‰€ä»¥æ’å…¥åœ¨å®ƒçš„åé¢
 		a[end+1] = tmp;
 	}
 }
 
-//´òÓ¡Êı×é
+//æ‰“å°æ•°ç»„
 void PrintArray(int* a, int n)
 {
 	for (int i = 0; i < n; i++)
@@ -36,16 +36,16 @@ void PrintArray(int* a, int n)
 	}
 	printf("\n");
 } 
-//²âÊÔ²åÈëÅÅĞò
+//æµ‹è¯•æ’å…¥æ’åº
 void TestInsertSort()
 {
-    //ÈÎÒâ½¨Á¢Ò»×éÎŞĞòµÄÊı
+    //ä»»æ„å»ºç«‹ä¸€ç»„æ— åºçš„æ•°
 	int a[100] ;
 	int j;
-	srand((unsigned)time(NULL));//±£Ö¤Ã¿´ÎÉú³ÉµÄËæ»úÊı²»Ò»Ñù
+	srand((unsigned)time(NULL));//ä¿è¯æ¯æ¬¡ç”Ÿæˆçš„éšæœºæ•°ä¸ä¸€æ ·
     for(j=0;j<=99;j++)
 	{
-		a[j]=rand()%(1000-99)+99;//Ëæ»úÊıµÄ·¶Î§£¨a,b)
+		a[j]=rand()%(1000-99)+99;//éšæœºæ•°çš„èŒƒå›´ï¼ˆa,b)
 			//printf("%d ",a[j]);
 	}
 	printf("\n");
@@ -55,7 +55,7 @@ void TestInsertSort()
 
 int main()
 {
-	printf("²åÈëÅÅĞò£º\n");
+	printf("æ’å…¥æ’åºï¼š\n");
 	TestInsertSort();
 	return 0;
 }
