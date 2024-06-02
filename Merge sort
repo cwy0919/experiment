@@ -3,7 +3,7 @@
 #include<assert.h>
 #include<time.h>
 
-// Éú³ÉÓĞn¸öÔªËØµÄËæ»úÊı×é£¬Ã¿¸öÔªËØµÄËæ»ú·¶Î§Îª[rangeL, rangeR]
+// ç”Ÿæˆæœ‰nä¸ªå…ƒç´ çš„éšæœºæ•°ç»„ï¼Œæ¯ä¸ªå…ƒç´ çš„éšæœºèŒƒå›´ä¸º[rangeL, rangeR]
 int *generateRandomArr(int n, int rangeL, int rangeR)
 {
     int i = 0;
@@ -17,7 +17,7 @@ int *generateRandomArr(int n, int rangeL, int rangeR)
     return arr;
 }
 
-//´òÓ¡Êı×éÖĞËùÓĞÔªËØ
+//æ‰“å°æ•°ç»„ä¸­æ‰€æœ‰å…ƒç´ 
 void printArr(int *arr, int n)
 {
     int i = 0;
@@ -26,7 +26,7 @@ void printArr(int *arr, int n)
     printf("\n");
 }
 
-//¼ì²éÊı×éÊÇ·ñÒÑ±»ÅÅĞò
+//æ£€æŸ¥æ•°ç»„æ˜¯å¦å·²è¢«æ’åº
 int isSorted(int *arr, int n)
 {
     for (int i = 0; i < n - 1; i++) {
@@ -45,7 +45,7 @@ void __merge(int *arr, int l, int mid, int r)
     }
     
     for (int k = l, i = l, j = mid + 1; k <= r; k++) {
-        if (i > mid) {  //×ó°ëÔªËØÒÑ±»È«²¿´¦Àí
+        if (i > mid) {  //å·¦åŠå…ƒç´ å·²è¢«å…¨éƒ¨å¤„ç†
             arr[k] = su[j++ - l];
         } else if (j > r) {
             arr[k] = su[i++ - l];
@@ -62,7 +62,7 @@ void __mergeSort(int *arr, int l, int r)
 {
     if(l >= r)
         return;
-    //ÓÅ»¯Ë¼Â·£¬ÔÚ¹é²¢µ½±È½ÏÉÙÔªËØÊ±£¬¿ÉÒÔÊ¹ÓÃ²åÈëÅÅĞò½øĞĞÓÅ»¯
+    //ä¼˜åŒ–æ€è·¯ï¼Œåœ¨å½’å¹¶åˆ°æ¯”è¾ƒå°‘å…ƒç´ æ—¶ï¼Œå¯ä»¥ä½¿ç”¨æ’å…¥æ’åºè¿›è¡Œä¼˜åŒ–
     int mid = (l + r) / 2;
     __mergeSort(arr, l, mid);
     __mergeSort(arr, mid + 1, r);
@@ -70,7 +70,7 @@ void __mergeSort(int *arr, int l, int r)
         __merge(arr, l, mid, r);
 }
 
-//¹é²¢ÅÅĞò
+//å½’å¹¶æ’åº
 void mergeSort(int *arr, int n)
 {
     __mergeSort(arr, 0, n - 1);
@@ -82,9 +82,9 @@ int main()
     //printArr(arr, 100000);
     mergeSort(arr, 100);
     if (0 == isSorted(arr, 100)) {
-        printf("ÅÅĞòÕıÈ·\n");
+        printf("æ’åºæ­£ç¡®\n");
         printArr(arr, 100);
     } else {
-        printf("ÅÅĞò´íÎó\n");
+        printf("æ’åºé”™è¯¯\n");
     }
 }
