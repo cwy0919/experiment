@@ -8,7 +8,7 @@ void swap(int *a, int *b){
     *b = temp;
 	}
 
-//ÈıÊıÈ¡ÖĞ
+//ä¸‰æ•°å–ä¸­
 int GetMid(int *a,int begin, int end)
 {
 	int mid = (begin + end) / 2;
@@ -37,18 +37,18 @@ void QuickSort_Pointer(int* a, int begin, int end)
 	{
 		return;
 	}
-	//Êı¾İÇø¼ä´óÓë10£¬½øĞĞ¿ìËÙÅÅĞò
+	//æ•°æ®åŒºé—´å¤§ä¸10ï¼Œè¿›è¡Œå¿«é€Ÿæ’åº
     int prev = begin;
 	int cur = begin + 1;
 	int keyi = begin;
-	//ÈıÊıÈ¡ÖĞºó¶ÔkeyiÎ»ÖÃµÄÖµ½øĞĞ½»»»
+	//ä¸‰æ•°å–ä¸­åå¯¹keyiä½ç½®çš„å€¼è¿›è¡Œäº¤æ¢
 	int mid = GetMid(a, begin, end);
 	
 
 	while (cur <= end)
 	{
-		//curÒ»Ö±ÍùÇ°×ß£¬Èç¹ûÅöµ½Ğ¡ÓÚ²¢ÇÒprev++²»µÈÓÚcurÔò½»»»£¬
-		//ÒòÎªÈç¹ûprev+1 == cur Ôò»á·¢Éú×Ô¼ºÓë×Ô¼º½»»»µÄÇé¿ö
+		//curä¸€ç›´å¾€å‰èµ°ï¼Œå¦‚æœç¢°åˆ°å°äºå¹¶ä¸”prev++ä¸ç­‰äºcuråˆ™äº¤æ¢ï¼Œ
+		//å› ä¸ºå¦‚æœprev+1 == cur åˆ™ä¼šå‘ç”Ÿè‡ªå·±ä¸è‡ªå·±äº¤æ¢çš„æƒ…å†µ
 		if (a[cur] < a[keyi] && ((++prev) != cur))
 		{
 			swap(&a[cur], &a[prev]);
@@ -57,30 +57,30 @@ void QuickSort_Pointer(int* a, int begin, int end)
 	}
 	swap(&a[prev], &a[keyi]);
 	keyi = prev;
-	//¿ªÊ¼½øĞĞµİ¹é
+	//å¼€å§‹è¿›è¡Œé€’å½’
 	QuickSort_Pointer(a, begin, keyi - 1);
 	QuickSort_Pointer(a, keyi + 1, end);
 }
-//Êä³öÊı×éÔªËØ
+//è¾“å‡ºæ•°ç»„å…ƒç´ 
 void print(int a[] ,int n)
 {
  for(int i=0;i<n;i++)
    printf("%d ",a[i]);
  printf("\n");
 }
-//Ö÷º¯Êı
+//ä¸»å‡½æ•°
 int main()
 {
 	int k;
 	int a[100];
-	srand((unsigned)time(NULL));//±£Ö¤Ã¿´ÎÉú³ÉµÄËæ»úÊı²»Ò»Ñù
+	srand((unsigned)time(NULL));//ä¿è¯æ¯æ¬¡ç”Ÿæˆçš„éšæœºæ•°ä¸ä¸€æ ·
 	for(k=0;k<=99;k++)
 	{
-		a[k]=rand()%(1000-99)+99;//Ëæ»úÊıµÄ·¶Î§£¨a,b)s
+		a[k]=rand()%(1000-99)+99;//éšæœºæ•°çš„èŒƒå›´ï¼ˆa,b)s
 	}
-	//print(a,9);//Êä³öÔ­Êı×é
-    QuickSort_Pointer(a,0,99);//µ÷ÓÃÅÅĞòº¯Êı
-    print(a,99);//Êä³öÅÅĞòºóµÄÊı×é
+	//print(a,9);//è¾“å‡ºåŸæ•°ç»„
+    QuickSort_Pointer(a,0,99);//è°ƒç”¨æ’åºå‡½æ•°
+    print(a,99);//è¾“å‡ºæ’åºåçš„æ•°ç»„
 	return 0;
 }
 
