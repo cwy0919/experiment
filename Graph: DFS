@@ -1,0 +1,96 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define Maxint 32767
+#define Maxnum 100//最大顶点数
+ 
+//数据类型
+typedef struct d { 
+	char id[10];
+	//……
+}
+ElemType;
+ 
+//图的邻接数组
+typedef struct graph {
+	ElemType vexs[Maxnum];//图数据
+	int matrix[Maxnum][Maxnum];//二维数组矩阵
+	int vexnum;//点数
+	int arcnum;//边数
+}Graph;
+ 
+//节点id查找下标
+int Locate_vex(Graph G, char* id) {
+	for (int i = 0; i < G.vexnum; i++)
+		if (strcmp(G.vexs[i].id,id)==0)
+			return i;
+	return -1;
+}
+//构造邻接矩阵(无向图，对称矩阵)(有向图)赋权图
+void Create_graph(Graph* G) {
+	printf("请输入顶点个数和边的个数：\n");
+	scanf("%d %d", &G->vexnum, &G->arcnum);//输入点数边数
+	printf("请输入顶点数据:\n");
+	for (int i = 0; i < G->vexnum; i++) {
+		scanf("%s", G->vexs[i].id);
+	}
+	for (int x = 0; x < G->vexnum; x++) {
+		for (int y = 0; y < G->vexnum; y++) {
+			if (x == y)
+				G->matrix[x][y] = 0;//对角线初始化为0
+			else
+				G->matrix[x][y] = Maxint;//其他初始化为Maxint
+		}
+	}
+	printf("请输入边相关数据:\n");
+	for (int k = 0; k < G->arcnum; k++) {
+		char a[10], b[10];
+		int w;
+		scanf("%s %s %d", a, b, &w);
+		//a->b
+		int i = Locate_vex(*G, a);
+		int j = Locate_vex(*G, b);
+		//矩阵赋值
+		G->matrix[i][j] = w;
+		G->matrix[j][i] = w;//删掉这个，表示有向图
+	}
+}
+ 
+//输出矩阵
+void print_matrix(Graph G) {
+	printf("矩阵为：\n");
+	for (int i = 0; i < G.arcnum; i++) {
+		for (int j = 0; j < G.arcnum; j++)
+			printf("%-5d ", G.matrix[i][j]);
+		printf("\n");
+	}
+	printf("图的顶点个数和边数：%d,%d\n", G.vexnum, G.arcnum);
+}
+ 
+//访问输出
+void visit(Graph G,int loca) {
+	printf("%s ", G.vexs[loca].id);
+}
+//深度优先遍历DFS
+void DFS(Graph G, char* begin,int* visited) {
+	int loca = Locate_vex(G, begin);
+	visit(G, loca);
+	visited[loca] = 1;//访问完后，visited对应的下标标记为1
+	for (int i = 0; i < G.vexnum; i++) {//当前顶点对其他顶点进行遍历，如果有通路就执行访问操作
+		if (G.matrix[loca][i] != 0&& G.matrix[loca][i]!=Maxint )
+			if(!visited[i])//如果visited为0的话（下一个顶点未访问过），那么就进入到下一个顶点继续访问
+				DFS(G, G.vexs[i].id , visited);
+	}
+	return;
+}
+ 
+int main() {
+	Graph G;
+	Create_graph(&G);
+	print_matrix(G);
+ 
+	int* visited = (int*)malloc(sizeof(int) * G.vexnum);
+	memset(visited, 0, sizeof(int)*G.vexnum);//初始化为0
+	printf("DFS:\n");
+	DFS(G, "B" , visited);
+}
